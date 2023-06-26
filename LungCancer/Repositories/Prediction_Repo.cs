@@ -36,7 +36,7 @@ namespace LungCancer.Repositories
         }
         public Prediction FindByUserID(int userId)
         {
-            var singlePrediction = db.Predictions.Include(i=>i.User).Include(d=>d.Doctor).Include(p=>p.Prescription).FirstOrDefault(i=>i.UserId==userId);
+            var singlePrediction = db.Predictions.Include(i=>i.User).Include(d=>d.Doctor).Include(p=>p.Prescription).ThenInclude(d=>d.Diagnosis).FirstOrDefault(i=>i.UserId==userId);
             return singlePrediction;
         }
         public IList<Prediction> List()
